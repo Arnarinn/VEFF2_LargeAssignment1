@@ -37,6 +37,11 @@
 		}
 		
 	}
+	MakeBelieveElement.prototype.delete = function(){
+		this.nodes.forEach(function(node){
+			node.parentNode.removeChild(node);
+		});
+	}
 		// // }
 		// // else {
 		// // 	var parent = document.querySelectorAll(selector)[0];
@@ -79,8 +84,9 @@
 		.appendChild(
 			document.createTextNode('I am the test')));*/
 //__('.two').append('<div class="test"></div>');
-__('.two').prepend(
+/*__('.two').prepend(
 	document.createElement('div')
 		.appendChild(
-			document.createTextNode('I am the test')));
-__('.two').prepend('<div class="test"></div>');
+			document.createTextNode('I am the test')));*/
+__('.two').prepend('<h1 class="red"> im blue dabadee dabada</h1>');
+__('.red').delete();

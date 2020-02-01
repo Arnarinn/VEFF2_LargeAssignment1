@@ -37,6 +37,17 @@
         // };
         // return parentList;
 
+		
+		
+		//7. Implement a click handler which handles if an element is being clicked.
+		MakeBelieveElement.prototype.onClick = function (event) {
+			for (let i = 0; i < this.nodes.length; i++) {
+				this.nodes[i].addEventListener('click', event);
+			}
+			return this;
+		}
+		
+		
 		// 11. Implement a method which deletes an element.
 		MakeBelieveElement.prototype.delete = function() {
 			for (let i = 0; i < this.nodes.length; i++) {
@@ -59,3 +70,4 @@ var parent = __('.password').parent().parent();
 var parentForm = __('form').parent();
 console.log(parentForm);
 console.log(parent);
+

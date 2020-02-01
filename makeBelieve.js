@@ -16,6 +16,32 @@
 			return new MakeBelieveElement(parentElement);
 		}
 	};
+	MakeBelieveElement.prototype.insertText = function(text){
+		this.nodes[0].innerHTML = text;
+	}
+	MakeBelieveElement.prototype.append = function(html){
+		if(typeof html == 'string'){
+			this.nodes[0].insertAdjacentHTML('beforeend', html);
+		}
+		else{
+			this.nodes[0].appendChild(html);
+		}
+		
+	}
+	MakeBelieveElement.prototype.prepend = function(html){
+		if(typeof html == 'string'){
+			this.nodes[0].insertAdjacentHTML('afterbegin', html);
+		}
+		else{
+			this.nodes[0].insertBefore(html,this.nodes[0].firstChild);
+		}
+		
+	}
+	MakeBelieveElement.prototype.delete = function(){
+		this.nodes.forEach(function(node){
+			node.parentNode.removeChild(node);
+		});
+	}
 		// // }
 		// // else {
 		// // 	var parent = document.querySelectorAll(selector)[0];
@@ -56,7 +82,7 @@
 })(window);
 
 //skilar form
-var parent = __('.password').parent().parent();
+//var parent = __('.password').parent().parent();
 //skilar div(four)
 var parentForm = __('form').parent();
 console.log(parentForm);
@@ -66,3 +92,20 @@ console.log(parent);
 __('.clickHandler').onClick(function(event) {
 	console.log(event.target);
 });
+
+//var parentForm = __('form').parent();
+//console.log(parentForm);
+//console.log(parent);
+
+//__('.blue').insertText("testing");
+/*__('.two').append(
+	document.createElement('div')
+		.appendChild(
+			document.createTextNode('I am the test')));*/
+//__('.two').append('<div class="test"></div>');
+/*__('.two').prepend(
+	document.createElement('div')
+		.appendChild(
+			document.createTextNode('I am the test')));*/
+__('.two').prepend('<h1 class="red"> im blue dabadee dabada</h1>');
+__('.red').delete();

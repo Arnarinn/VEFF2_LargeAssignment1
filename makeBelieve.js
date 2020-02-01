@@ -47,15 +47,6 @@
 			return this;
 		}
 		
-		
-		// 11. Implement a method which deletes an element.
-		MakeBelieveElement.prototype.delete = function() {
-			for (let i = 0; i < this.nodes.length; i++) {
-					this.nodes[i].parentNode.removeChild(this.nodes[i]);
-			}
-			return this;
-	};
-		
 	function query(cssSelector) {
         return new MakeBelieveElement(document.querySelectorAll(cssSelector));
     }
@@ -71,3 +62,7 @@ var parentForm = __('form').parent();
 console.log(parentForm);
 console.log(parent);
 
+// onClick() checker
+__('.clickHandler').onClick(function(event) {
+	console.log(event.target);
+});

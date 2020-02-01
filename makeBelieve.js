@@ -73,6 +73,25 @@
 			return this;
 		}
 		
+
+
+
+
+
+
+
+
+
+
+
+		//14. Implement a method called toggleClass() which toggles a css class for an element.
+		MakeBelieveElement.prototype.toggleClass = function(toggleAclass) {
+			for (let i = 0; i < this.nodes.length; i++) {
+				this.nodes[i].classList.toggle(toggleAclass);
+			}
+			return this;
+		}
+
 	function query(cssSelector) {
         return new MakeBelieveElement(document.querySelectorAll(cssSelector));
     }
@@ -92,6 +111,10 @@ console.log(parent);
 __('.clickHandler').onClick(function(event) {
 	console.log(event.target);
 });
+
+// toggleClass() checker
+__('#element-1').toggleClass('someClass');
+__('#element-1').toggleClass('anotherClass');
 
 //var parentForm = __('form').parent();
 //console.log(parentForm);

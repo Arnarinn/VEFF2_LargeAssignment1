@@ -63,6 +63,16 @@
         // };
         // return parentList;
 
+		
+		
+		//7. Implement a click handler which handles if an element is being clicked.
+		MakeBelieveElement.prototype.onClick = function (event) {
+			for (let i = 0; i < this.nodes.length; i++) {
+				this.nodes[i].addEventListener('click', event);
+			}
+			return this;
+		}
+		
 	function query(cssSelector) {
         return new MakeBelieveElement(document.querySelectorAll(cssSelector));
     }
@@ -74,6 +84,15 @@
 //skilar form
 //var parent = __('.password').parent().parent();
 //skilar div(four)
+var parentForm = __('form').parent();
+console.log(parentForm);
+console.log(parent);
+
+// onClick() checker
+__('.clickHandler').onClick(function(event) {
+	console.log(event.target);
+});
+
 //var parentForm = __('form').parent();
 //console.log(parentForm);
 //console.log(parent);

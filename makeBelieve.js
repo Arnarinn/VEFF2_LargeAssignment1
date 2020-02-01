@@ -19,6 +19,24 @@
 	MakeBelieveElement.prototype.insertText = function(text){
 		this.nodes[0].innerHTML = text;
 	}
+	MakeBelieveElement.prototype.append = function(html){
+		if(typeof html == 'string'){
+			this.nodes[0].insertAdjacentHTML('beforeend', html);
+		}
+		else{
+			this.nodes[0].appendChild(html);
+		}
+		
+	}
+	MakeBelieveElement.prototype.prepend = function(html){
+		if(typeof html == 'string'){
+			this.nodes[0].insertAdjacentHTML('afterbegin', html);
+		}
+		else{
+			this.nodes[0].insertBefore(html,this.nodes[0].firstChild);
+		}
+		
+	}
 		// // }
 		// // else {
 		// // 	var parent = document.querySelectorAll(selector)[0];
@@ -56,3 +74,13 @@
 //console.log(parent);
 
 //__('.blue').insertText("testing");
+/*__('.two').append(
+	document.createElement('div')
+		.appendChild(
+			document.createTextNode('I am the test')));*/
+//__('.two').append('<div class="test"></div>');
+__('.two').prepend(
+	document.createElement('div')
+		.appendChild(
+			document.createTextNode('I am the test')));
+__('.two').prepend('<div class="test"></div>');

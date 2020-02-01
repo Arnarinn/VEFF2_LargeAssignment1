@@ -16,6 +16,9 @@
 			return new MakeBelieveElement(parentElement);
 		}
 	};
+	MakeBelieveElement.prototype.insertText = function(text){
+		this.nodes[0].innerHTML = text;
+	}
 		// // }
 		// // else {
 		// // 	var parent = document.querySelectorAll(selector)[0];
@@ -46,8 +49,10 @@
 })(window);
 
 //skilar form
-var parent = __('.password').parent().parent();
+//var parent = __('.password').parent().parent();
 //skilar div(four)
-var parentForm = __('form').parent();
-console.log(parentForm);
-console.log(parent);
+//var parentForm = __('form').parent();
+//console.log(parentForm);
+//console.log(parent);
+
+//__('.blue').insertText("testing");

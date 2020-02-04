@@ -131,7 +131,6 @@
 		
 		//14. Implement a method called toggleClass() which toggles a css class for an element.
 		MakeBelieveElement.prototype.toggleClass = function(toggleAclass) {
-			// return this.nodes[0].classList.toggle(toggleAclass);
 			for (let i = 0; i < this.nodes.length; i++) {
 				this.nodes[i].classList.toggle(toggleAclass);
 			}

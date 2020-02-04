@@ -93,6 +93,11 @@
 			}
 		}
 	}
+	MakeBelieveElement.prototype.css = function(type, value){
+		this.nodes.forEach(function(node){
+			node.setAttribute('style', type + ": " + value);
+		})
+	}
 		// // }
 		// // else {
 		// // 	var parent = document.querySelectorAll(selector)[0];
@@ -184,15 +189,12 @@ __('#element-1').toggleClass('red');
 			document.createTextNode('I am the test')));*/
 //__('.two').prepend('<h1 class="red"> im blue dabadee dabada</h1>');
 //__('.red').delete();
-
+/*
 __().ajax({
 	url: 	'http://apis.is/currency/m5',
 	method: 'get',
 	timeout: 10,
 	data: {},
-	/*headers: [
-		['Authorization', 'John']
-	],*/
 	success: function(resp){
 		console.log("YAY SUCCESS");
 		console.log(resp);
@@ -204,4 +206,6 @@ __().ajax({
 	beforeSend: function(xhr){
 		console.log("CALM BEFORE THE STORM");
 	}
-});
+});*/
+
+__('.blue').css("font-weight", "bold");

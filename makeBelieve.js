@@ -97,6 +97,7 @@
     }
 
 	globalObj.__ = query;
+	// window.__ = innerMakeBelieve;
 	
 })(window);
 
@@ -113,8 +114,9 @@ __('.clickHandler').onClick(function(event) {
 });
 
 // toggleClass() checker
-__('#element-1').toggleClass('someClass');
-__('#element-1').toggleClass('anotherClass');
+__('#element-1').toggleClass('blue');
+// __('#element-1').toggleClass('blue');
+// __('#element-1').toggleClass('red');
 
 //var parentForm = __('form').parent();
 //console.log(parentForm);

@@ -137,10 +137,11 @@
 
 		//14. Implement a method called toggleClass() which toggles a css class for an element.
 		MakeBelieveElement.prototype.toggleClass = function(toggleAclass) {
-			for (let i = 0; i < this.nodes.length; i++) {
-				this.nodes[i].classList.toggle(toggleAclass);
-			}
-			return this;
+			return this.nodes[0].classList.toggle(toggleAclass);
+			// for (let i = 0; i < this.nodes.length; i++) {
+			// 	this.nodes[i].classList.toggle(toggleAclass);
+			// }
+			// return this;
 		}
 
 	function query(cssSelector) {
@@ -148,7 +149,6 @@
     }
 
 	globalObj.__ = query;
-	// window.__ = innerMakeBelieve;
 	
 })(window);
 
@@ -165,9 +165,9 @@ __('.clickHandler').onClick(function(event) {
 });
 
 // toggleClass() checker
-__('#element-1').toggleClass('blue');
 // __('#element-1').toggleClass('blue');
-// __('#element-1').toggleClass('red');
+// __('#element-1').toggleClass('blue');
+__('#element-1').toggleClass('red');
 
 //var parentForm = __('form').parent();
 //console.log(parentForm);

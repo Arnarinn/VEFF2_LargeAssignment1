@@ -129,22 +129,27 @@
 			return this;
 		}
 		
-
-
-
-
-
-
-
-
-
-
-
 		//14. Implement a method called toggleClass() which toggles a css class for an element.
 		MakeBelieveElement.prototype.toggleClass = function(toggleAclass) {
 			// return this.nodes[0].classList.toggle(toggleAclass);
 			for (let i = 0; i < this.nodes.length; i++) {
 				this.nodes[i].classList.toggle(toggleAclass);
+			}
+			return this;
+		}
+
+		//15. Implement a submit handler for forms.
+		MakeBelieveElement.prototype.onSubmit = function (event) {
+			for (let i = 0; i < this.nodes.length; i++) {
+				this.nodes[i].addEventListener('submit', event);
+			}
+			return this;
+		}
+
+		//16. Implement an input handler for input tags.
+		MakeBelieveElement.prototype.onInput = function (event) {
+			for (let i = 0; i < this.nodes.length; i++) {
+				this.nodes[i].addEventListener('change', event);
 			}
 			return this;
 		}
@@ -171,7 +176,17 @@ __('.clickHandler').onClick(function(event) {
 
 // toggleClass() checker
 __('#element-1').toggleClass('blue');
-__('#element-1').toggleClass('red');
+// __('#element-1').toggleClass('red');
+
+// onSubmit() function check
+__('#my-form').onSubmit(function(event) {
+	alert(event.target);
+});
+
+// onInput() function check
+__('#username').onInput(function(event) {
+	console.log(event.target);
+});
 
 //var parentForm = __('form').parent();
 //console.log(parentForm);

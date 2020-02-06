@@ -38,12 +38,10 @@
 			return new MakeBelieveElement(grandParentList);
 		}
 		else {
-			var chkSelector = document.querySelectorAll(selector);
+			var chkSelector = document.querySelectorAll(selector)[0];
 			for(var i = 0; i < this.nodes.length; i++) {
-				for(var j = 0; j < chkSelector.length; j++) {
-					if(chkSelector[j] === (this.nodes[i].parentNode).parentNode) {
-						grandParentList.push((this.nodes[i].parentNode).parentNode);
-					}
+				if(chkSelector === (this.nodes[i].parentNode).parentNode) {
+					grandParentList.push((this.nodes[i].parentNode).parentNode);
 				}
 			}
 			return new MakeBelieveElement(grandParentList);
@@ -53,15 +51,13 @@
 	// 
 	MakeBelieveElement.prototype.ancestor = function(selector) {
 		var ancestorList = [];
-		var chkSelector = document.querySelectorAll(selector);
+		var chkSelector = document.querySelectorAll(selector)[0];
 		for(var i = 0; i < this.nodes.length; i++) {
-			for(var j = 0; j < chkSelector.length; j++) {
-				var currentElement = this.nodes[i];
-				while(currentElement !== null) {
-					currentElement = currentElement.parentNode;
-					if(chkSelector[j] === currentElement) {
-						ancestorList.push(currentElement);
-					}
+			var currentElement = this.nodes[i];
+			while(currentElement !== null) {
+				currentElement = currentElement.parentNode;
+				if(chkSelector === currentElement) {
+					ancestorList.push(currentElement);
 				}
 			}
 		}
@@ -97,7 +93,8 @@
 		});
 	}
 	//Takes a settings object and makes an http request
-	MakeBelieveElement.prototype.ajax = function(httpObj){
+	//MakeBelieveElement.prototype.ajax = function(httpObj){
+	Object.prototype.ajax = function(httpObj){
 		//If there is no url nothing will happen
 		if(httpObj.url){
 			//If method is emtpy default to GET
@@ -146,65 +143,45 @@
 			}
 		}
 	}
+
+	//6. Implement a new css change to the element
 	MakeBelieveElement.prototype.css = function(type, value){
 		this.nodes.forEach(function(node){
 			node.setAttribute('style', type + ": " + value);
 		})
 	}
-		// // }
-		// // else {
-		// // 	var parent = document.querySelectorAll(selector)[0];
-		// // 	console.log(parent);
-		// // }
-		// var isParent = document.querySelectorAll(cssSelector)[0];
-        // // console.log(isParent);
-        // var parentList = [];
-        // var childElement = this.nodes[0];
-        // while(childElement) {
-        //     childElement = childElement.parentNode;
-        //     if(childElement !== null) {
-        //         parentList.push(childElement);
-        //         if(childElement === isParent) {
-        //             break;
-        //         };
-        //     };
-            
-        // };
-        // return parentList;
 
-		
-		
-		//7. Implement a click handler which handles if an element is being clicked.
-		MakeBelieveElement.prototype.onClick = function (event) {
-			for (let i = 0; i < this.nodes.length; i++) {
-				this.nodes[i].addEventListener('click', event);
-			}
-			return this;
+	//7. Implement a click handler which handles if an element is being clicked.
+	MakeBelieveElement.prototype.onClick = function (event) {
+		for (let i = 0; i < this.nodes.length; i++) {
+			this.nodes[i].addEventListener('click', event);
 		}
-		
-		//14. Implement a method called toggleClass() which toggles a css class for an element.
-		MakeBelieveElement.prototype.toggleClass = function(toggleAclass) {
-			for (let i = 0; i < this.nodes.length; i++) {
-				this.nodes[i].classList.toggle(toggleAclass);
-			}
-			return this;
+		return this;
+	}
+	
+	//14. Implement a method called toggleClass() which toggles a css class for an element.
+	MakeBelieveElement.prototype.toggleClass = function(toggleAclass) {
+		for (let i = 0; i < this.nodes.length; i++) {
+			this.nodes[i].classList.toggle(toggleAclass);
 		}
+		return this;
+	}
 
-		//15. Implement a submit handler for forms.
-		MakeBelieveElement.prototype.onSubmit = function (event) {
-			for (let i = 0; i < this.nodes.length; i++) {
-				this.nodes[i].addEventListener('submit', event);
-			}
-			return this;
+	//15. Implement a submit handler for forms.
+	MakeBelieveElement.prototype.onSubmit = function (event) {
+		for (let i = 0; i < this.nodes.length; i++) {
+			this.nodes[i].addEventListener('submit', event);
 		}
+		return this;
+	}
 
-		//16. Implement an input handler for input tags.
-		MakeBelieveElement.prototype.onInput = function (event) {
-			for (let i = 0; i < this.nodes.length; i++) {
-				this.nodes[i].addEventListener('change', event);
-			}
-			return this;
+	//16. Implement an input handler for input tags.
+	MakeBelieveElement.prototype.onInput = function (event) {
+		for (let i = 0; i < this.nodes.length; i++) {
+			this.nodes[i].addEventListener('change', event);
 		}
+		return this;
+	}
 
 	function query(cssSelector) {
         return new MakeBelieveElement(document.querySelectorAll(cssSelector));
@@ -214,9 +191,6 @@
 	
 })(window);
 
-//skilar form
-//var parent = __('.password').parent().parent();
-//skilar div(four)
 var parentForm = __('form').parent();
 console.log(parentForm);
 console.log(parent);
@@ -240,9 +214,14 @@ __('#username').onInput(function(event) {
 	console.log(event.target);
 });
 
-//var parentForm = __('form').parent();
-//console.log(parentForm);
-//console.log(parent);
+var grandParentForm = __('.password').grandParent('.four');
+console.log(grandParentForm);
+
+var ancestorPassword = __('.password').ancestor('.one');
+console.log(ancestorPassword);
+
+var ancestorPasswordSib = __('.password').ancestor('.two-sibling');
+console.log(ancestorPasswordSib);
 
 //__('.blue').insertText("testing");
 /*__('.two').append(
@@ -256,8 +235,8 @@ __('#username').onInput(function(event) {
 			document.createTextNode('I am the test')));*/
 //__('.two').prepend('<h1 class="red"> im blue dabadee dabada</h1>');
 //__('.red').delete();
-/*
-__().ajax({
+
+__.ajax({
 	url: 	'http://apis.is/currency/m5',
 	method: 'get',
 	timeout: 10,
@@ -273,6 +252,6 @@ __().ajax({
 	beforeSend: function(xhr){
 		console.log("CALM BEFORE THE STORM");
 	}
-});*/
+});
 
 __('.blue').css("font-weight", "bold");

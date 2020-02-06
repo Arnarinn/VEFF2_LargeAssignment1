@@ -7,14 +7,67 @@
         this.nodes = nodes;
 	}
 
+	// returns a list of parent elements in a MBE
 	MakeBelieveElement.prototype.parent = function(selector) {
+		var parentList = [];
 		if(selector === undefined) {
-			// console.log(this.nodes[0].parentNode);
-			var parentElement = this.nodes[0].parentNode;
-			// return this.node;
-			return new MakeBelieveElement(parentElement);
+			for(var i = 0; i < this.nodes.length; i++) {
+				parentList.push(this.nodes[i].parentNode);
+			}
 		}
+		else {
+			var chkSelector = document.querySelectorAll(selector);
+			for(var i = 0; i < this.nodes.length; i++) {
+				for(var j = 0; j < chkSelector.length; j++) {
+					if(chkSelector[j] === this.nodes[i].parentNode) {
+						parentList.push(this.nodes[i].parentNode);
+					}
+				}
+			}
+		}
+		return new MakeBelieveElement(parentList);
 	};
+
+	// finds the grandparent of the current element. Returns a MBE with a list of grandParents
+	MakeBelieveElement.prototype.grandParent = function(selector) {
+		var grandParentList = [];
+		if(selector === undefined) {
+			for(var i = 0; i < this.nodes.length; i++) {
+				grandParentList.push((this.nodes[i].parentNode).parentNode);
+			}
+			return new MakeBelieveElement(grandParentList);
+		}
+		else {
+			var chkSelector = document.querySelectorAll(selector);
+			for(var i = 0; i < this.nodes.length; i++) {
+				for(var j = 0; j < chkSelector.length; j++) {
+					if(chkSelector[j] === (this.nodes[i].parentNode).parentNode) {
+						grandParentList.push((this.nodes[i].parentNode).parentNode);
+					}
+				}
+			}
+			return new MakeBelieveElement(grandParentList);
+		}
+	}
+
+	// 
+	MakeBelieveElement.prototype.ancestor = function(selector) {
+		var ancestorList = [];
+		var chkSelector = document.querySelectorAll(selector);
+		for(var i = 0; i < this.nodes.length; i++) {
+			for(var j = 0; j < chkSelector.length; j++) {
+				var currentElement = this.nodes[i];
+				while(currentElement !== null) {
+					currentElement = currentElement.parentNode;
+					if(chkSelector[j] === currentElement) {
+						ancestorList.push(currentElement);
+					}
+				}
+			}
+		}
+		return new MakeBelieveElement(ancestorList);
+	}
+
 	//Insert text into elements and replaces them if there is already text
 	MakeBelieveElement.prototype.insertText = function(text){
 		this.nodes[0].innerHTML = text;
